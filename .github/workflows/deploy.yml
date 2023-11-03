@@ -18,9 +18,31 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+      - name: Checkout rosettasciio
+        uses: actions/checkout@v3
+        with:
+          repository: ericpre/rosettasciio
+          path: rosettasciio
+          ref: numba_h5py_optional
+
+      - name: Checkout rosettasciio
+        # Needs to fetch the tags from upstream to get the
+        # correct version with setuptools_scm
+        run: |
+          cd rosettasciio
+          git remote add upstream https://github.com/hyperspy/rosettasciio.git
+          git fetch --prune --unshallow
+          git fetch upstream --tags
+      - name: Build rosettascio
+        # Remove when a pure python wheels is available on pypi
+        run: |
+          cd rosettasciio
+          python -m pip install pipx
+          DISABLE_C_EXTENTIONS=1 pipx run build --wheel
       - name: Install the dependencies
         run: |
           python -m pip install -r requirements.txt
+          python -m pip install --pre --find-links rosettasciio/dist rosettasciio
       - name: Build the JupyterLite site
         run: |
           cp README.md content

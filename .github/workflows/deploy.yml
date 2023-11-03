@@ -38,7 +38,9 @@ jobs:
         run: |
           cd rosettasciio
           python -m pip install pipx
-          DISABLE_C_EXTENTIONS=1 pipx run build --wheel
+          pipx run build --wheel --outdir ../content
+        env:
+          DISABLE_C_EXTENTIONS: 1
       - name: Install the dependencies
         run: |
           python -m pip install -r requirements.txt
@@ -47,6 +49,9 @@ jobs:
         run: |
           cp README.md content
           jupyter lite build --contents content --output-dir dist
+      - name: ls content
+        run: |
+          ls content
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

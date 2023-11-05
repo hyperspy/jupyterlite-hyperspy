@@ -64,7 +64,7 @@ jobs:
           jupyter lite build --contents content --output-dir dist
       - name: ls content
         run: |
-          ls content
+          ls -shR content
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

@@ -11,4 +11,11 @@ ipywidgets>=8.1.3,<9
 
 # Python: interative Matplotlib library for Jupyter notebooks (optional)
 ipympl>=0.9.8
+
+# Python: anywidget library for custom Jupyter widgets (optional)
+# The labextension is bundled in the deployed site, so the frontend
+# model class is registered when the notebook is opened.
+# Must match the version defined in jupyter_lite_config.json
+anywidget==0.11.0
+
 theme-darcula==4.0.0

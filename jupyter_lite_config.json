@@ -2,16 +2,22 @@
   "PyodideLockAddon": {
     "enabled": true,
     "specs": [
+      "anyplotlib",
       "hyperspy[gui-jupyter]",
+      "anywidget",
       "ipympl",
       "ipywidgets",
       "rosettasciio"
     ],
     "constraints": [
+      "anywidget==0.11.0",
+      "hyperspy>=2.5.0",
       "mpmath>=1.1,<1.4"
     ],
     "prefetch_extra": [
       "hyperspy",
+      "anyplotlib",
+      "anywidget",
       "ipympl",
       "ipywidgets",
       "matplotlib"
